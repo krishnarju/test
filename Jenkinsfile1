@@ -21,6 +21,7 @@ pipeline {
   -Dsonar.login=c2b54fbbbbac8b389b2032878329474d4c46dd9c
             }
         }
+}
       stage('Deploy') {
             steps {
                 echo 'Deploying....'
