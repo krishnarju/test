@@ -13,6 +13,14 @@ pipeline {
                sh 'mvn -DskipTests clean package'
             }
         }
+ stage('sonarscanner') {
+            steps {
+               mvn sonar:sonar \
+  -Dsonar.projectKey=test \
+  -Dsonar.host.url=http://43.205.238.255:9000 \
+  -Dsonar.login=c2b54fbbbbac8b389b2032878329474d4c46dd9c
+            }
+        }
       stage('Deploy') {
             steps {
                 echo 'Deploying....'
