@@ -22,11 +22,5 @@ stage('sonarscanner') {
 }
             }
         }
-
-      stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
     }
 
