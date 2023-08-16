@@ -13,13 +13,9 @@ pipeline {
                sh 'mvn -DskipTests clean package'
             }
         }
-stage('sonarscanner') {
-            steps {
-              
-  withSonarQubeEnv('SonarQube Scanner 4.8.0.2856') {
- sh "mvn sonar:sonar"
-    }
-}
+stage('Docker image') {
+       steps {
+        docker build -t Docker .
             }
         }
     }
