@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+ checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/krishnarju/test.git']])
+              
+            }
+        }
+        stage('build') {
+            steps {
+               sh 'mvn  clean install'
+            }
+        }
+        
+        stage('Docker') {
+            steps {
+        sh 'docker build -t alpine .'
+                      }
+           }
+           stage('Login') {
+      steps {
+        sh 'docker login -u "krishna1116" -p "Krish@116" docker.io'
+      }
+    }
+    stage('Push') {
+      steps {
+        sh 'docker push krishna1116/test1'
+      }
+    }
+       			}
+	}
